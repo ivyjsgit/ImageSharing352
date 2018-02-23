@@ -27,7 +27,10 @@ public class BasicSharing {
 
     }
     public static SharableImage recieveImage(String ip) throws IOException {
+<<<<<<< HEAD
         System.out.println("Connecting");
+=======
+>>>>>>> master
         Socket socket = new Socket(ip, 1337);
         BufferedReader inputStream = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         String recievedString = inputStream.readLine();
