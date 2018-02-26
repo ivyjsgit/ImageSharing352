@@ -1,18 +1,31 @@
 package ReusableClasses;
 
-import java.io.File;
-import java.io.Serializable;
+import org.apache.commons.io.IOUtils;
 
-@SuppressWarnings("serial")
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.*;
+import java.util.Optional;
+
 public class SharableImage implements Serializable{
 	private File file;
     private String title;
     private String author;
+    private byte[] imageAsBytes;
     
     public SharableImage(File file, String title, String author) {
         this.file = file;
         this.title = title;
         this.author = author;
+        try {
+            FileInputStream fileInputStream = new FileInputStream(file);
+            imageAsBytes = IOUtils.toByteArray(fileInputStream);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
     
     public File getFile() {
@@ -37,5 +50,14 @@ public class SharableImage implements Serializable{
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    private Optional<BufferedImage> getImage(){
+        try {
+            return new Optional.of(ImageIO.read(new ByteArrayInputStream(imageAsBytes)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new Optional.empty();
     }
 }
