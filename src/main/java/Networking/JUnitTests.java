@@ -1,4 +1,5 @@
-import Networking.BasicSharing;
+package Networking;
+
 import ReusableClasses.SharableImage;
 import org.junit.Assert;
 import org.junit.Test;

@@ -3,7 +3,18 @@ package ReusableClasses;
 import java.io.File;
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class SharableImage implements Serializable{
+	private File file;
+    private String title;
+    private String author;
+    
+    public SharableImage(File file, String title, String author) {
+        this.file = file;
+        this.title = title;
+        this.author = author;
+    }
+    
     public File getFile() {
         return file;
     }
@@ -27,14 +38,4 @@ public class SharableImage implements Serializable{
     public void setAuthor(String author) {
         this.author = author;
     }
-
-    public SharableImage(File file, String title, String author) {
-        this.file = file;
-        this.title = title;
-        this.author = author;
-    }
-
-    private File file;
-    private String title;
-    private String author;
 }

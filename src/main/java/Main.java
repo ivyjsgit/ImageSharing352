@@ -3,20 +3,21 @@ import ReusableClasses.SharableImage;
 
 import java.io.IOException;
 
+import org.junit.Assert;
+
 public class Main {
     public static void main(String[] args){
-        new Thread(()->{
-            BasicSharing.sendImage(new SharableImage(null, "Test", "test"));
+    	 new Thread(()->{
+             try {
+                 SharableImage receivedImage = BasicSharing.recieveImage("10.253.201.40");
+                 System.out.println(receivedImage.getAuthor());
 
-        }).start();
-            new Thread(()->{
-                try {
-                    SharableImage recievedImage = BasicSharing.recieveImage("127.0.0.1");
-                    System.out.println(recievedImage.getTitle());
-                }catch(Exception e){
+             }catch(Exception e){
 
-                }
-            }).start();
-
+             }
+         }).start();
+    	 while (true) {
+    		 
+    	 }
     }
 }
