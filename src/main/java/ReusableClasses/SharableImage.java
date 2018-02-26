@@ -30,24 +30,25 @@ public class SharableImage implements Serializable{
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    private Optional<BufferedImage> getImage(){
+    public Optional<BufferedImage> getImage(){
         try {
             return Optional.of(ImageIO.read(new ByteArrayInputStream(imageAsBytes)));
         } catch (IOException e) {
             e.printStackTrace();
         }
         return Optional.empty();
+    }
+
+    @Override
+    public String toString() {
+        return "SharableImage{" +
+                "file=" + file +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                '}';
     }
 }
