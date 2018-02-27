@@ -18,7 +18,7 @@ public class RequestedImageSharing {
         PrintWriter outputStreamWriter = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()),true);
 
         BufferedReader inputStream = getBufferedReader(socket.getInputStream());
-        outputStreamWriter.write(imageName);
+        outputStreamWriter.write(imageName+"\n");
         outputStreamWriter.flush();
         boolean asBoolean =Boolean.valueOf(inputStream.readLine());
         if(asBoolean){
@@ -40,12 +40,9 @@ public class RequestedImageSharing {
         PrintWriter outputWriter = new PrintWriter(new BufferedOutputStream(connectedSocket.getOutputStream()),true);
 
         System.out.println("Getting stuff!");
-
-        String requestedImage ="";
-        while (!inputStream.ready()) {
-
-        }
-        requestedImage = inputStream.readLine();
+        while (!inputStream.ready()) {}
+        System.out.println("Stuff gotten");
+        String requestedImage = inputStream.readLine();
         System.out.println("Requested Image " + requestedImage);
         if(doesContainImage(requestedImage,files)){
             System.out.println("Have image!");

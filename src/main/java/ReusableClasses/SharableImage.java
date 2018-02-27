@@ -57,6 +57,9 @@ public class SharableImage implements Serializable{
 
     @Override
     public String toString() {
-        return "SharableImage{" + "title='" + title + "'" + ", author='" + author + "'" + '}';
+        return "SharableImage{" +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                '}';
     }
 }
