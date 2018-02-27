@@ -41,5 +41,41 @@ public class BasicSharing {
         SharableImage gotImage = (SharableImage) SerializationUtils.deserialize(decodedBase64);
         return gotImage;
     }
+<<<<<<< Updated upstream
+=======
+    public static void sendImageRequest(String ip, String imageName) throws IOException {
+        Socket socket = new Socket(ip, 1338);
+        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(socket.getOutputStream());
+        BufferedInputStream bufferedInputStream = new BufferedInputStream(socket.getInputStream());
+        outputStreamWriter.write(imageName);
+
+    }
+    public static void receiveImageRequest(ArrayList<SharableImage> files) throws IOException {
+        ServerSocket serverSocket = new ServerSocket(1338);
+        Socket connectedSocket = serverSocket.accept();
+        PrintWriter outputWriter = new PrintWriter(new BufferedOutputStream(connectedSocket.getOutputStream()));
+
+        BufferedReader inputStream = new BufferedReader(new InputStreamReader(connectedSocket.getInputStream()));
+        String requestedImage = inputStream.readLine();
+
+        if(doesContainImage(requestedImage,files)){
+            outputWriter.write("true");
+            outputWriter.flush();
+            outputWriter.close();
+        }else{
+            outputWriter.write("false");
+            outputWriter.flush();
+            outputWriter.close();
+        }
+    }
+    public static boolean doesContainImage(String imageName, ArrayList<SharableImage> files){
+        for(int i=0;i<files.size();i++){
+            if(files.get(i).getTitle().equals(imageName)){
+                return true;
+            }
+        }
+        return  false;
+    }
+>>>>>>> Stashed changes
 
 }

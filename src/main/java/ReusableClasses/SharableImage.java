@@ -34,6 +34,13 @@ public class SharableImage implements Serializable{
         return author;
     }
 
+<<<<<<< Updated upstream
+=======
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+>>>>>>> Stashed changes
     public Optional<BufferedImage> getImage(){
         try {
             return Optional.of(ImageIO.read(new ByteArrayInputStream(imageAsBytes)));
