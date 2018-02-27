@@ -29,18 +29,23 @@ public class SharableImage implements Serializable{
     public String getTitle() {
         return title;
     }
+    
+    public void setTitle(String title) {
+    	this.title = title;
+    }
 
     public String getAuthor() {
         return author;
     }
 
-<<<<<<< Updated upstream
-=======
     public void setAuthor(String author) {
         this.author = author;
     }
+    
+    public byte[] getByteArray() {
+    	return imageAsBytes;
+    }
 
->>>>>>> Stashed changes
     public Optional<BufferedImage> getImage(){
         try {
             return Optional.of(ImageIO.read(new ByteArrayInputStream(imageAsBytes)));
@@ -52,10 +57,6 @@ public class SharableImage implements Serializable{
 
     @Override
     public String toString() {
-        return "SharableImage{" +
-                "file=" + file +
-                ", title='" + title + '\'' +
-                ", author='" + author + '\'' +
-                '}';
+        return "SharableImage{" + "title='" + title + "'" + ", author='" + author + "'" + '}';
     }
 }

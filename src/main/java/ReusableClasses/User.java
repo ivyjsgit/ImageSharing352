@@ -16,7 +16,7 @@ public class User {
 	
 	public void deleteFile(String fileName) {
 		int i = 0;
-		while (!files.get(i).getTitle().equals(fileName) && i != files.size()) {
+		while (i != files.size() && !files.get(i).getTitle().equals(fileName)) {
 			i++;
 		}
 		if (i != files.size()) {
@@ -28,11 +28,23 @@ public class User {
 		files.add(new SharableImage(file, name, author));
 	}
 	
+	public ArrayList<SharableImage> getFiles() {
+		return files;
+	}
+	
 	public String getName() {
 		return name;
 	}
 	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	public String getIP() {
 		return ip;
+	}
+	
+	public void setIP(String ip) {
+		this.ip = ip;
 	}
 }

@@ -6,6 +6,7 @@ import org.apache.commons.lang3.SerializationUtils;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Base64;
 
 public class BasicSharing {
@@ -41,8 +42,7 @@ public class BasicSharing {
         SharableImage gotImage = (SharableImage) SerializationUtils.deserialize(decodedBase64);
         return gotImage;
     }
-<<<<<<< Updated upstream
-=======
+
     public static void sendImageRequest(String ip, String imageName) throws IOException {
         Socket socket = new Socket(ip, 1338);
         OutputStreamWriter outputStreamWriter = new OutputStreamWriter(socket.getOutputStream());
@@ -76,6 +76,4 @@ public class BasicSharing {
         }
         return  false;
     }
->>>>>>> Stashed changes
-
 }
