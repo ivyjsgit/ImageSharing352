@@ -19,20 +19,20 @@ public class SharableImageTest {
 
 	@Test
 	public void testConstructor() {
-		SharableImage image = new SharableImage(new File("C:/Users/Samantha/Downloads/Curve1.jpg"), "pic", "Sam");
+		SharableImage image = new SharableImage(new File("src/main/java/ReusableClasses/Curve1.jpg"), "pic", "Sam");
 		assertTrue(image.getAuthor().equals("Sam"));
 		assertTrue(image.getTitle().equals("pic"));
 	}
 	
 	@Test
 	public void testToString() {
-		SharableImage image = new SharableImage(new File("C:/Users/Samantha/Downloads/Curve1.jpg"), "pic", "Sam");
+		SharableImage image = new SharableImage(new File("src/main/java/ReusableClasses/Curve1.jpg"), "pic", "Sam");
 		assertTrue(image.toString().equals("SharableImage{title='pic', author='Sam'}"));
 	}
 	
 	@Test
 	public void testSet() {
-		SharableImage image = new SharableImage(new File("C:/Users/Samantha/Downloads/Curve1.jpg"), "pic", "Sam");
+		SharableImage image = new SharableImage(new File("src/main/java/ReusableClasses/Curve1.jpg"), "pic", "Sam");
 		image.setAuthor("Colby");
 		image.setTitle("notPic");
 		assertTrue(image.getAuthor().equals("Colby"));
@@ -41,7 +41,7 @@ public class SharableImageTest {
 	
 	@Test
 	public void testGetImage() {
-		File file = new File("C:/Users/Samantha/Downloads/Curve1.jpg");
+		File file = new File("src/main/java/ReusableClasses/Curve1.jpg");
 		SharableImage image = new SharableImage(file, "pic", "Sam");
 		byte[] picture = image.getByteArray();
 		byte[] copy = null;
