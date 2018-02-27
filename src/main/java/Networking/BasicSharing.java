@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Base64;
 
 public class BasicSharing {
-    public static void sendImage(SharableImage sharableImage){
+    public static void sendImage(SharableImage sharableImage) {
         try {
             ServerSocket serverSocket = new ServerSocket(1337);
             String imageAsBytes = Base64.getEncoder().encodeToString(SerializationUtils.serialize(sharableImage));
@@ -50,6 +50,7 @@ public class BasicSharing {
         outputStreamWriter.write(imageName);
 
     }
+
     public static void receiveImageRequest(ArrayList<SharableImage> files) throws IOException {
         ServerSocket serverSocket = new ServerSocket(1338);
         Socket connectedSocket = serverSocket.accept();
@@ -58,22 +59,23 @@ public class BasicSharing {
         BufferedReader inputStream = new BufferedReader(new InputStreamReader(connectedSocket.getInputStream()));
         String requestedImage = inputStream.readLine();
 
-        if(doesContainImage(requestedImage,files)){
+        if (doesContainImage(requestedImage, files)) {
             outputWriter.write("true");
             outputWriter.flush();
             outputWriter.close();
-        }else{
+        } else {
             outputWriter.write("false");
             outputWriter.flush();
             outputWriter.close();
         }
     }
-    public static boolean doesContainImage(String imageName, ArrayList<SharableImage> files){
-        for(int i=0;i<files.size();i++){
-            if(files.get(i).getTitle().equals(imageName)){
+
+    public static boolean doesContainImage(String imageName, ArrayList<SharableImage> files) {
+        for (int i = 0; i < files.size(); i++) {
+            if (files.get(i).getTitle().equals(imageName)) {
                 return true;
             }
         }
-        return  false;
+        return false;
     }
 }
