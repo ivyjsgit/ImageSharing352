@@ -45,11 +45,11 @@ public class TestGUI extends Application {
 		File folder = new File(path);
 		File[] listOfFiles = folder.listFiles();
 
-		for (final File file : listOfFiles) {
-			ImageView imageView;
-			imageView = createImageView(file);
-			tile.getChildren().addAll(imageView);
-		}
+//		for (final File file : listOfFiles) {
+//			ImageView imageView;
+//			imageView = createImageView(file);
+//			tile.getChildren().addAll(imageView);
+//		}
 
 		root.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER); // Horizontal
 		root.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED); // Vertical
