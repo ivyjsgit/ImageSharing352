@@ -61,9 +61,6 @@ public class ImageShareController {
 
     }
 
-    public void submitIP() {
-    }
-
     public void uploadImage() {
         fileChooser.setTitle("Select Image");
         File chosenFile = fileChooser.showOpenDialog(new Stage());

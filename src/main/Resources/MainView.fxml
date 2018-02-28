@@ -24,7 +24,7 @@
         <Menu mnemonicParsing="false" text="File">
           <items>
             <MenuItem id="uploadImageButton" fx:id="uploadImageButton" mnemonicParsing="false" onAction="#uploadImage" text="Upload Image" />
-            <MenuItem id="downloadImageButton" fx:id="downloadImageButton" mnemonicParsing="false" onAction="#requestImage" text="Download Image" />
+            <MenuItem id="downloadImageButton" fx:id="downloadImageButton" mnemonicParsing="false" onAction="#openImageRequestWindow" text="Download Image" />
                   <MenuItem mnemonicParsing="false" onAction="#quit" text="Quit" />
           </items>
         </Menu>
