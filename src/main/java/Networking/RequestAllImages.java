@@ -1,6 +1,8 @@
 package Networking;
 
+import ReusableClasses.ClientSocket;
 import ReusableClasses.SharableImage;
+import ReusableClasses.SimpleServerSocket;
 import org.apache.commons.lang3.SerializationUtils;
 
 import java.io.BufferedReader;
@@ -17,14 +19,10 @@ import static Networking.RequestedImageSharing.preventRaceCondition;
 public class RequestAllImages {
     public static ArrayList<SharableImage> requestAllImages(String ip) throws IOException {
         preventRaceCondition();
+        ClientSocket socket = new ClientSocket(ip,1339);
+        socket.sendMessageLine("GET");
+        String arrayListAsString = socket.recieveMessage();
 
-        Socket socket = new Socket(ip, 1339);
-        PrintWriter outputStreamWriter = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
-        BufferedReader inputStream = RequestedImageSharing.getBufferedReader(socket.getInputStream());
-        outputStreamWriter.write("GET\n");
-        outputStreamWriter.flush();
-
-        String arrayListAsString = inputStream.readLine();
         byte[] decodedBase64 = Base64.getDecoder().decode(arrayListAsString);
         ArrayList<SharableImage> asArrayList = (ArrayList<SharableImage>) SerializationUtils.deserialize(decodedBase64);
         System.out.println("Stuff " + asArrayList);
@@ -32,15 +30,11 @@ public class RequestAllImages {
     }
 
     public static void receiveAllImages(ArrayList<SharableImage> images) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(1339);
-        Socket socket = serverSocket.accept();
-        PrintWriter outputStreamWriter = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
-        BufferedReader inputStream = RequestedImageSharing.getBufferedReader(socket.getInputStream());
-        String recievedCommand = inputStream.readLine();
+        SimpleServerSocket simpleServerSocket = new SimpleServerSocket(1339);
+        String recievedCommand = simpleServerSocket.recieveMessage();
         if (recievedCommand.equals("GET")) {
             String arrayAsBytes = Base64.getEncoder().encodeToString(SerializationUtils.serialize(images));
-            outputStreamWriter.write(arrayAsBytes + "\n");
-            outputStreamWriter.flush();
+            simpleServerSocket.sendMessageLine(arrayAsBytes);
         }
     }
 }
