@@ -42,7 +42,7 @@ public class ImageShareController {
 	ImageView imageDown;
 
 	User testUser = new User("test", "");
-	String otherUserIP = "";
+	User otherUser = new User("test1", "");
 
 	public void initialize() {
 
@@ -61,12 +61,12 @@ public class ImageShareController {
 	}
 
 	public void submitOtherIP() {
-		otherUserIP = otherIP.getText();
+		otherUser.setIP(otherIP.getText());
 	}
 
 
 	public void requestImage() throws IOException {
-		SharableImage receivedImage =  RequestedImageSharing.sendImageRequest(otherUserIP,testUser.getFiles().get(0).getTitle()).get();
+		SharableImage receivedImage =  RequestedImageSharing.sendImageRequest(otherUser.getIP(),otherUser.getFiles().get(0).getTitle()).get();
 		Image image = SwingFXUtils.toFXImage(receivedImage.getImage().get(), null);
 		imageDown.setImage(image);
 	}
