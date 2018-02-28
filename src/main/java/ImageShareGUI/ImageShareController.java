@@ -54,7 +54,7 @@ public class ImageShareController {
 
 	public void uploadImage() {
 		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Open Resource File");
+		fileChooser.setTitle("Select Image");
 		File chosenFile = fileChooser.showOpenDialog(null);
 		SharableImage chosenImage = new SharableImage(chosenFile, chosenFile.getName(), "test");
 		testUser.addSharbleImage(chosenImage);
@@ -67,6 +67,7 @@ public class ImageShareController {
 
 	public void requestImage() throws IOException {
 		SharableImage receivedImage =  RequestedImageSharing.sendImageRequest(otherUser.getIP(),otherUser.getFiles().get(0).getTitle()).get();
+		RequestedImageSharing.receiveImageRequest(otherUser.getFiles());
 		Image image = SwingFXUtils.toFXImage(receivedImage.getImage().get(), null);
 		imageDown.setImage(image);
 	}
