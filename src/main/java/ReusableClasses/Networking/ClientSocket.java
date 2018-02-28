@@ -9,8 +9,6 @@ import java.net.Socket;
 import static Networking.RequestedImageSharing.getBufferedReader;
 
 public class ClientSocket {
-
-
     Socket socket;
     BufferedReader inputReader;
     PrintWriter outputWriter;
@@ -28,9 +26,6 @@ public class ClientSocket {
     }
     public String recieveMessage() throws IOException {
         return inputReader.readLine();
-    }
-    public Socket getSocket(){
-        return this.socket;
     }
     @Override
     public String toString() {

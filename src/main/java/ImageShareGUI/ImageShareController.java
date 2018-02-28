@@ -41,9 +41,9 @@ public class ImageShareController {
 
     public void initialize() {
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("JPEG", "*.jpg"),
-                new FileChooser.ExtensionFilter("JPEG", "*.jpeg"),
-                new FileChooser.ExtensionFilter("PNG", "*.png")
+                new FileChooser.ExtensionFilter("*.jpg", "*.jpg"),
+                new FileChooser.ExtensionFilter("*.jpg", "*.jpeg"),
+                new FileChooser.ExtensionFilter("*.png", "*.png")
         );
         Platform.runLater(new Runnable() {
             @Override
