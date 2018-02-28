@@ -52,4 +52,13 @@ public class User {
 		files.add(image);
 
 	}
+
+	@Override
+	public String toString() {
+		return "User{" +
+				"files=" + files +
+				", name='" + name + '\'' +
+				", ip='" + ip + '\'' +
+				'}';
+	}
 }
