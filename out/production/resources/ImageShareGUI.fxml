@@ -12,7 +12,7 @@
    <center>
       <VBox alignment="CENTER" prefHeight="388.0" prefWidth="647.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="ipViewer" contentDisplay="CENTER" prefHeight="17.0" prefWidth="247.0" text="Your IP Is:" textAlignment="CENTER" />
+            <Label fx:id="ipViewer" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="247.0" text="Your IP Is:" />
             <Button fx:id="upload" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#uploadImage" prefHeight="500.0" prefWidth="500.0" text="Upload Image">
                <font>
                   <Font size="20.0" />
@@ -23,11 +23,6 @@
                   <Font size="20.0" />
                </font>
             </TextField>
-            <Button fx:id="subOtherIP" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#submitOtherIP" prefHeight="500.0" prefWidth="500.0" text="Submit Other IP">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
             <Button fx:id="request" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#requestImage" prefHeight="500.0" prefWidth="500.0" text="Request Image">
                <font>
                   <Font size="20.0" />

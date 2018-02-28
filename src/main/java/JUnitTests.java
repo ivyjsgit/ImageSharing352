@@ -1,4 +1,4 @@
-import ReusableClasses.SharableImage;
+import ReusableClasses.Images.SharableImage;
 import org.junit.Assert;
 import org.junit.Test;
 

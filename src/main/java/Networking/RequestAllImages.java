@@ -1,16 +1,11 @@
 package Networking;
 
-import ReusableClasses.ClientSocket;
-import ReusableClasses.SharableImage;
-import ReusableClasses.SimpleServerSocket;
+import ReusableClasses.Networking.ClientSocket;
+import ReusableClasses.Images.SharableImage;
+import ReusableClasses.Networking.SimpleServerSocket;
 import org.apache.commons.lang3.SerializationUtils;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Base64;
 
@@ -31,8 +26,8 @@ public class RequestAllImages {
 
     public static void receiveAllImages(ArrayList<SharableImage> images) throws IOException {
         SimpleServerSocket simpleServerSocket = new SimpleServerSocket(1339);
-        String recievedCommand = simpleServerSocket.recieveMessage();
-        if (recievedCommand.equals("GET")) {
+        String receivedCommand = simpleServerSocket.recieveMessage();
+        if (receivedCommand.equals("GET")) {
             String arrayAsBytes = Base64.getEncoder().encodeToString(SerializationUtils.serialize(images));
             simpleServerSocket.sendMessage(arrayAsBytes);
         }

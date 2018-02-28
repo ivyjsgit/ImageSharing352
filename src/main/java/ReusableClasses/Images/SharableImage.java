@@ -1,4 +1,4 @@
-package ReusableClasses;
+package ReusableClasses.Images;
 
 import org.apache.commons.io.IOUtils;
 
