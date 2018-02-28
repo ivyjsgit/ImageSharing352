@@ -7,7 +7,6 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -24,37 +23,9 @@
       <menus>
         <Menu mnemonicParsing="false" text="File">
           <items>
-            <MenuItem mnemonicParsing="false" text="New" />
-            <MenuItem mnemonicParsing="false" text="Open…" />
-            <Menu mnemonicParsing="false" text="Open Recent" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Close" />
-            <MenuItem mnemonicParsing="false" text="Save" />
-            <MenuItem mnemonicParsing="false" text="Save As…" />
-            <MenuItem mnemonicParsing="false" text="Revert" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Preferences…" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Quit" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Edit">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Undo" />
-            <MenuItem mnemonicParsing="false" text="Redo" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Cut" />
-            <MenuItem mnemonicParsing="false" text="Copy" />
-            <MenuItem mnemonicParsing="false" text="Paste" />
-            <MenuItem mnemonicParsing="false" text="Delete" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Select All" />
-            <MenuItem mnemonicParsing="false" text="Unselect All" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Help">
-          <items>
-            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+            <MenuItem id="uploadImageButton" fx:id="uploadImageButton" mnemonicParsing="false" onAction="#uploadImage" text="Upload Image" />
+            <MenuItem id="downloadImageButton" fx:id="downloadImageButton" mnemonicParsing="false" onAction="#openImageRequestWindow" text="Download Image" />
+                  <MenuItem mnemonicParsing="false" onAction="#quit" text="Quit" />
           </items>
         </Menu>
       </menus>
@@ -73,7 +44,7 @@
             </Label>
                   <ScrollPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <content>
-                        <ListView prefHeight="556.0" prefWidth="221.0">
+                        <ListView fx:id="imageList" prefHeight="556.0" prefWidth="221.0">
 							 <Label text="Cool Graph" />
                         </ListView>
                      </content>
@@ -84,9 +55,9 @@
           <content>
             <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="545.0" prefWidth="710.0">
               <children>
-                        <Label layoutX="255.0" layoutY="102.0" text="Cool Graph" />
-                        <Label layoutX="255.0" layoutY="407.0" text="GraphDude" />
-                        <ImageView fitHeight="236.0" fitWidth="320.0" layoutX="172.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
+                        <Label fx:id="imageName" layoutX="255.0" layoutY="102.0" text="Cool Graph" />
+                        <Label fx:id="imageAuthor" layoutX="255.0" layoutY="407.0" text="GraphDude" />
+                        <ImageView id="imageViewer" fx:id="imageViewer" fitHeight="236.0" fitWidth="320.0" layoutX="172.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Downloads/desmos-graph.png" />
                            </image>
