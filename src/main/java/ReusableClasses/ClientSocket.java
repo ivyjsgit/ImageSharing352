@@ -21,12 +21,9 @@ public class ClientSocket {
         this.outputWriter = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
         this.inputReader = getBufferedReader(socket.getInputStream());
     }
-    public void sendMessageLine(String message){
-        outputWriter.write(message+"\n");
-        outputWriter.flush();
-    }
+
     public void sendMessage(String message){
-        outputWriter.write(message);
+        outputWriter.write(message+"\n");
         outputWriter.flush();
     }
     public String recieveMessage() throws IOException {

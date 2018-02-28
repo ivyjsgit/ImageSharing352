@@ -14,7 +14,7 @@ public class RequestedImageSharing {
     public static Optional<SharableImage> sendImageRequest(String ip, String imageName) throws IOException {
         preventRaceCondition();
         ClientSocket socket = new ClientSocket(ip,1999);
-        socket.sendMessageLine(imageName);
+        socket.sendMessage(imageName);
 
         boolean asBoolean = Boolean.valueOf(socket.recieveMessage());
         if (asBoolean) {

@@ -66,7 +66,7 @@ set CMD_LINE_ARGS=%*
 set CLASSPATH=%APP_HOME%\lib\ImageSharing352.jar;%APP_HOME%\lib\guava-23.0.jar;%APP_HOME%\lib\commons-lang3-3.1.jar;%APP_HOME%\lib\junit-4.12.jar;%APP_HOME%\lib\jsr305-1.3.9.jar;%APP_HOME%\lib\error_prone_annotations-2.0.18.jar;%APP_HOME%\lib\j2objc-annotations-1.1.jar;%APP_HOME%\lib\animal-sniffer-annotations-1.14.jar;%APP_HOME%\lib\commons-io-1.3.2.jar;%APP_HOME%\lib\hamcrest-core-1.3.jar
 
 @rem Execute ImageSharing352
-"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %IMAGE_SHARING352_OPTS%  -classpath "%CLASSPATH%" Main %CMD_LINE_ARGS%
+"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %IMAGE_SHARING352_OPTS%  -classpath "%CLASSPATH%" ImageShareGUI.ImageShare %CMD_LINE_ARGS%
 
 :end
 @rem End local scope for the variables with windows NT shell

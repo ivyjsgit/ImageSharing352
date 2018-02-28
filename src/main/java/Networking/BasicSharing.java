@@ -27,35 +27,11 @@ public class BasicSharing {
         RequestedImageSharing.preventRaceCondition();
         ClientSocket clientSocket = new ClientSocket(ip,1337);
         String receivedString = clientSocket.recieveMessage();
+
         byte[] decodedBase64 = Base64.getDecoder().decode(receivedString);
         SharableImage gotImage = (SharableImage) SerializationUtils.deserialize(decodedBase64);
 
         return gotImage;
     }
 
-    public static void sendImageRequest(String ip, String imageName) throws IOException {
-        ClientSocket clientSocket = new ClientSocket(ip,1338);
-        clientSocket.sendMessageLine(imageName);
-
-    }
-
-    public static void receiveImageRequest(ArrayList<SharableImage> files) throws IOException {
-        SimpleServerSocket serverSocket = new SimpleServerSocket(1338);
-        String requestedImage = serverSocket.recieveMessage();
-
-        if (doesContainImage(requestedImage, files)) {
-          serverSocket.sendMessage("true");
-        } else {
-            serverSocket.sendMessage("false");
-        }
-    }
-
-    public static boolean doesContainImage(String imageName, ArrayList<SharableImage> files) {
-        for (int i = 0; i < files.size(); i++) {
-            if (files.get(i).getTitle().equals(imageName)) {
-                return true;
-            }
-        }
-        return false;
-    }
 }
