@@ -1,1 +1,3 @@
-# ImageSharing352
+How to compile
+
+gradle build run
