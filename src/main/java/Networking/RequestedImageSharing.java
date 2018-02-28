@@ -2,7 +2,6 @@ package Networking;
 
 import ReusableClasses.SharableImage;
 
-import javax.swing.text.html.Option;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -15,16 +14,16 @@ public class RequestedImageSharing {
         Socket socket = new Socket(ip, 1999);
         System.out.println("Connected client");
 
-        PrintWriter outputStreamWriter = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()),true);
+        PrintWriter outputStreamWriter = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
 
-        BufferedReader inputStream = getBufferedReader(socket.getInputStream());
-        outputStreamWriter.write(imageName+"\n");
+        BufferedReader inputReader = getBufferedReader(socket.getInputStream());
+        outputStreamWriter.write(imageName + "\n");
         outputStreamWriter.flush();
-        boolean asBoolean =Boolean.valueOf(inputStream.readLine());
-        if(asBoolean){
+        boolean asBoolean = Boolean.valueOf(inputReader.readLine());
+        if (asBoolean) {
             System.out.println("Have image!");
             return Optional.of(getSelectedImage(ip));
-        }else{
+        } else {
             System.out.println("No image :(");
             return Optional.empty();
 
@@ -37,20 +36,21 @@ public class RequestedImageSharing {
         BufferedReader inputStream = getBufferedReader(connectedSocket.getInputStream());
 
         System.out.println("Connected Server");
-        PrintWriter outputWriter = new PrintWriter(new BufferedOutputStream(connectedSocket.getOutputStream()),true);
+        PrintWriter outputWriter = new PrintWriter(new BufferedOutputStream(connectedSocket.getOutputStream()), true);
 
         System.out.println("Getting stuff!");
-        while (!inputStream.ready()) {}
+        while (!inputStream.ready()) {
+        }
         System.out.println("Stuff gotten");
         String requestedImage = inputStream.readLine();
         System.out.println("Requested Image " + requestedImage);
-        if(doesContainImage(requestedImage,files)){
+        if (doesContainImage(requestedImage, files)) {
             System.out.println("Have image!");
             outputWriter.write("true");
             outputWriter.flush();
             outputWriter.close();
 
-        }else{
+        } else {
             System.out.println("No image");
             outputWriter.write("false");
             outputWriter.flush();
@@ -58,9 +58,9 @@ public class RequestedImageSharing {
         }
     }
 
-    protected static boolean doesContainImage(String imageName, ArrayList<SharableImage> files){
-        for(int i=0;i<files.size();i++){
-            if(files.get(i).getTitle().equals(imageName)){
+    protected static boolean doesContainImage(String imageName, ArrayList<SharableImage> files) {
+        for (int i = 0; i < files.size(); i++) {
+            if (files.get(i).getTitle().equals(imageName)) {
                 shareSelectedImage(files.get(i));
                 return true;
             }
@@ -68,11 +68,11 @@ public class RequestedImageSharing {
         return false;
     }
 
-    protected static BufferedReader getBufferedReader(InputStream input){
+    protected static BufferedReader getBufferedReader(InputStream input) {
         return new BufferedReader(new InputStreamReader(input));
     }
 
-    public static void preventRaceCondition(){
+    public static void preventRaceCondition() {
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
@@ -80,11 +80,12 @@ public class RequestedImageSharing {
         }
     }
 
-    protected static void shareSelectedImage(SharableImage image){
-        new Thread(()->{
+    protected static void shareSelectedImage(SharableImage image) {
+        new Thread(() -> {
             BasicSharing.sendImage(image);
         }).start();
     }
+
     protected static SharableImage getSelectedImage(String ip) throws IOException {
         return BasicSharing.receiveImage(ip);
     }
