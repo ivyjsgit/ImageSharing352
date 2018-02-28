@@ -36,8 +36,7 @@ public class ImageShareController {
     @FXML
     ImageView imageDown;
     FileChooser fileChooser = new FileChooser();
-    User testUser = new User("test", "");
-    User otherUser = new User("test1", "");
+
 
     public void initialize() {
         fileChooser.getExtensionFilters().addAll(
@@ -74,7 +73,6 @@ public class ImageShareController {
             public void run() {
                 SharableImage chosenImage = new SharableImage(chosenFile, chosenFile.getName(), "test");
                 System.out.println("Crashing?");
-                testUser.addSharbleImage(chosenImage);
 
                 Image image = SwingFXUtils.toFXImage(chosenImage.getImage().get(), null);
                 new Thread(new Runnable() {
@@ -89,11 +87,6 @@ public class ImageShareController {
         }).start();
 
     }
-
-    public void submitOtherIP() {
-        otherUser.setIP(otherIP.getText());
-    }
-
 
     public void requestImage() throws IOException {
         new Thread(new Runnable() {
