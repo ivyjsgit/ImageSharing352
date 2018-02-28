@@ -1,14 +1,11 @@
 package Networking;
 
-import ReusableClasses.ClientSocket;
-import ReusableClasses.SharableImage;
-import ReusableClasses.SimpleServerSocket;
+import ReusableClasses.Networking.ClientSocket;
+import ReusableClasses.Images.SharableImage;
+import ReusableClasses.Networking.SimpleServerSocket;
 import org.apache.commons.lang3.SerializationUtils;
 
 import java.io.*;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.util.ArrayList;
 import java.util.Base64;
 
 public class BasicSharing {

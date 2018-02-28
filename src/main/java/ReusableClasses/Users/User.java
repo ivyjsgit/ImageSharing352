@@ -1,4 +1,6 @@
-package ReusableClasses;
+package ReusableClasses.Users;
+
+import ReusableClasses.Images.SharableImage;
 
 import java.io.File;
 import java.util.ArrayList;

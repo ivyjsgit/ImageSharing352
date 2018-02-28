@@ -1,10 +1,9 @@
-package ReusableClasses;
+package ReusableClasses.Networking;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
-import java.net.Socket;
 
 import static Networking.RequestedImageSharing.getBufferedReader;
 

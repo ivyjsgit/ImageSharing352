@@ -1,12 +1,10 @@
 package Networking;
 
-import ReusableClasses.ClientSocket;
-import ReusableClasses.SharableImage;
-import ReusableClasses.SimpleServerSocket;
+import ReusableClasses.Networking.ClientSocket;
+import ReusableClasses.Images.SharableImage;
+import ReusableClasses.Networking.SimpleServerSocket;
 
 import java.io.*;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Optional;
 
