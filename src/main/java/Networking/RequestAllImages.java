@@ -25,7 +25,7 @@ public class RequestAllImages {
     }
 
     public static void receiveAllImages(ArrayList<SharableImage> images) throws IOException {
-        SimpleServerSocket simpleServerSocket = new SimpleServerSocket(1339);
+        SimpleServerSocket simpleServerSocket = new SimpleServerSocket(1340);
         String receivedCommand = simpleServerSocket.recieveMessage();
         if (receivedCommand.equals("GET")) {
             String arrayAsBytes = Base64.getEncoder().encodeToString(SerializationUtils.serialize(images));
