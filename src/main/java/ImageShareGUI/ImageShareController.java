@@ -69,29 +69,28 @@ public class ImageShareController {
 		fileChooser.setTitle("Select Image");
 		File chosenFile = fileChooser.showOpenDialog(new Stage());
 
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				SharableImage chosenImage = new SharableImage(chosenFile, chosenFile.getName(), "test");
-				shareUser.addSharbleImage(chosenImage);
-				System.out.println("Crashing?");
+		new Thread(() -> {
+			SharableImage chosenImage = new SharableImage(chosenFile, chosenFile.getName(), "test");
+			shareUser.addSharbleImage(chosenImage);
+			System.out.println("Crashing?");
 
-				Image image = SwingFXUtils.toFXImage(chosenImage.getImage().get(), null);
-				new Thread(new Runnable() {
-					@Override
-					public void run() {
-						imageDown.setImage(image);
+			Image image = SwingFXUtils.toFXImage(chosenImage.getImage().get(), null);
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					ImageView upImage = new ImageView(image);
+					tiles.getChildren().add(upImage);
 
-					}
-				}).start();
-				try {
-					RequestAllImages.receiveAllImages(shareUser.getFiles());
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 				}
-				;
+
+			});
+			try {
+				RequestAllImages.receiveAllImages(shareUser.getFiles());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+			;
 		}).start();
 
 	}

@@ -11,5 +11,6 @@
 	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
 	<classpathentry kind="lib" path="C:/Users/colby/Downloads/commons-io-2.6.jar"/>
 	<classpathentry kind="lib" path="C:/Users/colby/Downloads/commons-lang3-3.7.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin/default"/>
 </classpath>
