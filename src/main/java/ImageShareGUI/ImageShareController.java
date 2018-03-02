@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class ImageShareController {
 
@@ -116,6 +117,5 @@ public class ImageShareController {
 				}
 			}
 		}).start();
-
 	}
 }
