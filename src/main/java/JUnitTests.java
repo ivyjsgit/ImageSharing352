@@ -1,10 +1,8 @@
-package Networking;
-
 import ReusableClasses.Images.SharableImage;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class BasicSharingTest {
+public class JUnitTests {
 
     @Test
     public void TestNetworking(){
