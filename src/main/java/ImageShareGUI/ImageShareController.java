@@ -13,11 +13,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -45,10 +48,17 @@ public class ImageShareController {
 
 	FileChooser fileChooser = new FileChooser();
 	User shareUser = new User("", "");
+	File directory = new File("Directory.txt");
 
 	public void initialize() {
 		fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("*.jpg", "*.jpg"),
 				new FileChooser.ExtensionFilter("*.jpg", "*.jpeg"), new FileChooser.ExtensionFilter("*.png", "*.png"));
+		if (!directory.exists()) {
+			DirectoryChooser dirChoose = new DirectoryChooser();
+			dirChoose.setTitle("Choose initial directory");
+			File chosenDir = dirChoose.showDialog(new Stage());
+			saveDirectory(chosenDir.getAbsolutePath());
+		}
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
@@ -64,6 +74,23 @@ public class ImageShareController {
 			}
 		});
 
+	}
+
+	private void saveDirectory(String absolutePath) {
+		try {
+			Scanner fileIn = new Scanner(absolutePath);
+			PrintStream fileOut = new PrintStream(directory);
+
+			while (fileIn.hasNextLine()) {
+				fileOut.print(fileIn.nextLine());
+			}
+
+			fileIn.close();
+			fileOut.close();
+		}
+		catch (FileNotFoundException e) {
+			e.getMessage();
+		}
 	}
 
 	public void uploadImage() {
