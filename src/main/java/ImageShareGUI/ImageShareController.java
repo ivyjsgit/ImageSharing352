@@ -64,23 +64,24 @@ public class ImageShareController {
 			File chosenDir = dirChoose.showDialog(new Stage());
 			defaultDir = chosenDir.getAbsolutePath();
 			saveDirectory(defaultDir);
-		}
-		else {
-			/* 
-			Found at http://javarevisited.blogspot.com/2015/09/how-to-read-file-into-string-in-java-7.html#ixzz58o7FRLqr
+		} else {
+			/*
+			 * Found at
+			 * http://javarevisited.blogspot.com/2015/09/how-to-read-file-into-
+			 * string-in-java-7.html#ixzz58o7FRLqr
 			 */
 			try {
 				InputStream is = new FileInputStream(directory);
 				BufferedReader buf = new BufferedReader(new InputStreamReader(is));
-				
+
 				String line = buf.readLine();
 				StringBuilder sb = new StringBuilder();
-				
-				while(line != null){
+
+				while (line != null) {
 					sb.append(line).append("\n");
 					line = buf.readLine();
 				}
-				
+
 				defaultDir = sb.toString();
 			} catch (Exception e) {
 				e.getMessage();
@@ -114,8 +115,7 @@ public class ImageShareController {
 
 			fileIn.close();
 			fileOut.close();
-		}
-		catch (FileNotFoundException e) {
+		} catch (FileNotFoundException e) {
 			e.getMessage();
 		}
 	}

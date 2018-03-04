@@ -36,9 +36,13 @@
       </VBox>
    </center>
    <left>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
-            <TilePane fx:id="tiles" prefHeight="200.0" prefWidth="200.0" />
+            <ScrollPane fitToHeight="true" fitToWidth="true">
+               <content>
+                  <TilePane fx:id="tiles" prefHeight="250.0" prefWidth="250.0" />
+               </content>
+            </ScrollPane>
          </children>
       </VBox>
    </left>
