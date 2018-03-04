@@ -17,12 +17,19 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -49,6 +56,7 @@ public class ImageShareController {
 	FileChooser fileChooser = new FileChooser();
 	User shareUser = new User("", "");
 	File directory = new File("Directory.txt");
+	String defaultDir;
 
 	public void initialize() {
 		fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("*.jpg", "*.jpg"),
@@ -57,7 +65,29 @@ public class ImageShareController {
 			DirectoryChooser dirChoose = new DirectoryChooser();
 			dirChoose.setTitle("Choose initial directory");
 			File chosenDir = dirChoose.showDialog(new Stage());
-			saveDirectory(chosenDir.getAbsolutePath());
+			defaultDir = chosenDir.getAbsolutePath();
+			saveDirectory(defaultDir);
+		}
+		else {
+			/* 
+			Found at http://javarevisited.blogspot.com/2015/09/how-to-read-file-into-string-in-java-7.html#ixzz58o7FRLqr
+			 */
+			try {
+				InputStream is = new FileInputStream(directory);
+				BufferedReader buf = new BufferedReader(new InputStreamReader(is));
+				
+				String line = buf.readLine();
+				StringBuilder sb = new StringBuilder();
+				
+				while(line != null){
+					sb.append(line).append("\n");
+					line = buf.readLine();
+				}
+				
+				defaultDir = sb.toString();
+			} catch (Exception e) {
+				e.getMessage();
+			}
 		}
 		Platform.runLater(new Runnable() {
 			@Override
