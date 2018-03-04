@@ -125,7 +125,8 @@ public class ImageShareController {
 		fileChooser.setTitle("Select Image");
 		File chosenFile = fileChooser.showOpenDialog(new Stage());
 
-		new Thread(() -> {
+			new Thread(() -> {
+
 			SharableImage chosenImage = new SharableImage(chosenFile, chosenFile.getName(), "test");
 			shareUser.addSharbleImage(chosenImage);
 			System.out.println("Crashing?");
@@ -140,6 +141,7 @@ public class ImageShareController {
 				}
 
 			});
+
 			try {
 				RequestAllImages.receiveAllImages(shareUser.getFiles());
 			} catch (IOException e) {
@@ -147,7 +149,7 @@ public class ImageShareController {
 				e.printStackTrace();
 			}
 			;
-		}).start();
+		},"uploadingThread").start();
 
 	}
 
