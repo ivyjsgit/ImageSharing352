@@ -15,7 +15,7 @@ public class ImageShare extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            BorderPane root = FXMLLoader.load(getClass().getResource("ImageShareGUI.fxml"));
+            BorderPane root = FXMLLoader.load(getClass().getResource("/ImageShareGUI.fxml"));
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();
