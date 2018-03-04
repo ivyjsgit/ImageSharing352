@@ -6,6 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 
 public class ImageShare extends Application {
     public static void main(String[] args) {
@@ -19,9 +21,18 @@ public class ImageShare extends Application {
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();
-        } catch (Exception e) {
+        } catch (NullPointerException e) {
+            BorderPane root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource("\\ImageShareGUI.fxml"));
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (Exception e){
             e.printStackTrace();
-            System.exit(1);
         }
     }
 }
