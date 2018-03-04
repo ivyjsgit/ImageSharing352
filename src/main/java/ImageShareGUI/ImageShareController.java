@@ -82,6 +82,7 @@ public class ImageShareController {
 				}
 				
 				defaultDir = sb.toString();
+				buf.close();
 			} catch (Exception e) {
 				e.getMessage();
 			}
