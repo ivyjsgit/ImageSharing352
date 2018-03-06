@@ -15,6 +15,7 @@ public class ClientSocket {
 
     public ClientSocket(String ip, int port) throws IOException {
         socket = new Socket(ip, port);
+        this.socket.setSoTimeout(10000);
         this.outputWriter = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
         this.inputReader = getBufferedReader(socket.getInputStream());
     }
@@ -36,6 +37,7 @@ public class ClientSocket {
     }
     public ClientSocket(Socket socket) throws IOException {
         this.socket=socket;
+        this.socket.setSoTimeout(10000);
         this.outputWriter = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
         this.inputReader = getBufferedReader(socket.getInputStream());
     }

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ImageShareGUI.ImageShareController">
+   <center>
+      <VBox alignment="CENTER" prefHeight="388.0" prefWidth="647.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="ipViewer" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="247.0" text="Your IP Is:" />
+            <Button fx:id="upload" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#uploadImage" prefHeight="500.0" prefWidth="500.0" text="Upload Image">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <TextField fx:id="otherIP" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" promptText="Other User IP">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+            <Button fx:id="request" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#requestImage" prefHeight="500.0" prefWidth="500.0" text="Request Image">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </center>
+   <left>
+      <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+         <children>
+            <ScrollPane fitToHeight="true" fitToWidth="true">
+               <content>
+                  <TilePane fx:id="tiles" prefHeight="250.0" prefWidth="250.0" />
+               </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+   </left>
+</BorderPane>

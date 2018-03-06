@@ -65,7 +65,11 @@ public class RequestedImageSharing {
 
     protected static void shareSelectedImage(SharableImage image) {
         new Thread(() -> {
-            BasicSharing.sendImage(image);
+            try {
+                BasicSharing.sendImage(image);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }).start();
     }
 

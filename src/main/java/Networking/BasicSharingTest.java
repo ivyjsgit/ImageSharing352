@@ -3,12 +3,18 @@ import ReusableClasses.Images.SharableImage;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.IOException;
+
 public class BasicSharingTest {
 
     @Test
     public void TestNetworking(){
         new Thread(()->{
-            Networking.BasicSharing.sendImage(new SharableImage(null, "Test", "test"));
+            try {
+                BasicSharing.sendImage(new SharableImage(null, "Test", "test"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
         }).start();
         new Thread(()->{

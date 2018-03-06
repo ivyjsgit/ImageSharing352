@@ -21,16 +21,6 @@ public class ImageShare extends Application {
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();
-        } catch (NullPointerException e) {
-            BorderPane root = null;
-            try {
-                root = FXMLLoader.load(getClass().getResource("\\ImageShareGUI.fxml"));
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.show();
         } catch (Exception e){
             e.printStackTrace();
         }

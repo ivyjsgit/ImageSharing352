@@ -9,13 +9,13 @@ import java.io.*;
 import java.util.Base64;
 
 public class BasicSharing {
-    public static void sendImage(SharableImage sharableImage) {
+    public static void sendImage(SharableImage sharableImage) throws IOException {
         try {
             SimpleServerSocket simpleServerSocket = new SimpleServerSocket(1337);
             String imageAsBytes = Base64.getEncoder().encodeToString(SerializationUtils.serialize(sharableImage));
             simpleServerSocket.sendMessage(imageAsBytes);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new IOException("Server could not connect to client");
         }
 
     }
