@@ -15,7 +15,6 @@ public class ClientSocket {
 
     public ClientSocket(String ip, int port) throws IOException {
         socket = new Socket(ip, port);
-        System.out.println("Connected client");
         this.outputWriter = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
         this.inputReader = getBufferedReader(socket.getInputStream());
     }
@@ -36,7 +35,6 @@ public class ClientSocket {
                 '}';
     }
     public ClientSocket(Socket socket) throws IOException {
-        System.out.println("Connected client");
         this.socket=socket;
         this.outputWriter = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
         this.inputReader = getBufferedReader(socket.getInputStream());
