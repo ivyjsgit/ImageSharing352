@@ -28,8 +28,7 @@ public class RequestAllImages {
         SimpleServerSocket simpleServerSocket = new SimpleServerSocket(1339);
         String receivedCommand = simpleServerSocket.recieveMessage();
         if (receivedCommand.equals("GET")) {
-            String arrayAsBytes = Base64.getEncoder().encodeToString(SerializationUtils.serialize(images));
-            simpleServerSocket.sendMessage(arrayAsBytes);
+            BasicSharing.encodeAndSend(images,simpleServerSocket);
         }
     }
 }

@@ -65,19 +65,16 @@ public class ImageShareController {
 			 */
             readDefaultDirectory(directory, defaultDir);
         }
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    String ip = InetAddress.getLocalHost().getHostAddress();
-                    System.out.println(ip);
-                    shareUser.setIP(ip);
-                    ipViewer.setText("Your IP is: " + ip);
-                } catch (UnknownHostException e) {
-                    e.printStackTrace();
-                }
-
+        Platform.runLater(() -> {
+            try {
+                String ip = InetAddress.getLocalHost().getHostAddress();
+                System.out.println(ip);
+                shareUser.setIP(ip);
+                ipViewer.setText("Your IP is: " + ip);
+            } catch (UnknownHostException e) {
+                e.printStackTrace();
             }
+
         });
 
     }
@@ -94,13 +91,9 @@ public class ImageShareController {
             System.out.println("Crashing?");
 
             Image image = SwingFXUtils.toFXImage(chosenImage.getImage().get(), null);
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    ImageView upImage = new ImageView(image);
-                    tiles.getChildren().add(upImage);
-
-                }
+            Platform.runLater(() -> {
+                ImageView upImage = new ImageView(image);
+                tiles.getChildren().add(upImage);
 
             });
 
@@ -116,25 +109,22 @@ public class ImageShareController {
     }
 
     public void requestImage() throws IOException {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                ArrayList<SharableImage> receivedImages = new ArrayList<SharableImage>();
-                System.out.println("Getting image!");
-                try {
-                    System.out.println(otherIP.getText());
-                    receivedImages.addAll(RequestAllImages.requestAllImages(otherIP.getText()));
+        Platform.runLater(() -> {
+            ArrayList<SharableImage> receivedImages = new ArrayList<SharableImage>();
+            System.out.println("Getting image!");
+            try {
+                System.out.println(otherIP.getText());
+                receivedImages.addAll(RequestAllImages.requestAllImages(otherIP.getText()));
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                for (SharableImage x : receivedImages) {
-                    ImageView tileImage;
-                    Image image = SwingFXUtils.toFXImage(x.getImage().get(), null);
-                    tileImage = new ImageView(image);
-                    tiles.getChildren().addAll(tileImage);
-                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        }).start();
+            for (SharableImage x : receivedImages) {
+                ImageView tileImage;
+                Image image = SwingFXUtils.toFXImage(x.getImage().get(), null);
+                tileImage = new ImageView(image);
+                tiles.getChildren().addAll(tileImage);
+            }
+        });
     }
 }
