@@ -141,6 +141,13 @@ public class TabGUIController {
 		fileSaver.setInitialDirectory(chosenDirectory);
 		File savedImage = fileSaver.showSaveDialog(null);
 
+		// https://stackoverflow.com/questions/10471396/appending-the-file-type-to-a-file-in-java-using-jfilechooser
+
+		String filePath = savedImage.getAbsolutePath();
+		if (!filePath.endsWith(".png")) {
+			savedImage = new File(filePath + ".png");
+		}
+
 		BufferedImage buffImage = SwingFXUtils.fromFXImage(downImage, null);
 		try {
 			ImageIO.write(buffImage, "png", savedImage);
