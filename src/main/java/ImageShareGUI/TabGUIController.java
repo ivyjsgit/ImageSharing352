@@ -138,7 +138,7 @@ public class TabGUIController {
 	public void saveImage(Image downImage) {
 		FileChooser fileSaver = new FileChooser();
 		fileSaver.setTitle("Save Image");
-		fileSaver.setInitialDirectory(chosenDirectory);
+		fileSaver.setInitialDirectory(new File(System.getProperty(defaultDir)));
 		File savedImage = fileSaver.showSaveDialog(null);
 
 		// https://stackoverflow.com/questions/10471396/appending-the-file-type-to-a-file-in-java-using-jfilechooser
