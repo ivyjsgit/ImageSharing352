@@ -102,8 +102,7 @@ public class TabGUIController {
 	 * gallery-in-javafx-not-able-to-display-image-properly
 	 *
 	 * Used as reference for some TilePane code
-	 *
-	 *
+	  *
 	 */
 
 	private void addTab(String name) {
@@ -189,6 +188,7 @@ public class TabGUIController {
 			System.out.println("Getting image!");
 			try {
 				System.out.println(otherIP.getText());
+				receivedImages.clear();
 				receivedImages.addAll(RequestAllImages.requestAllImages(otherIP.getText()));
 				addTab(otherIP.getText());
 
