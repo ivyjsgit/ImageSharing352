@@ -50,5 +50,6 @@ public class SharableImageTest {
             e.printStackTrace();
         }
 		assertTrue(Arrays.equals(picture, copy));
+		assertTrue(image.equals(image));
 	}
 }

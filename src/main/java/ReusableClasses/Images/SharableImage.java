@@ -1,12 +1,18 @@
 package ReusableClasses.Images;
 
 import java.awt.image.BufferedImage;
+<<<<<<< HEAD
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
+=======
+import java.io.*;
+import java.util.Arrays;
+import java.util.Base64;
+>>>>>>> 8cd32f311386b4fc7c7ffdac505f2afabcb2f95e
 import java.util.Optional;
 
 import javax.imageio.ImageIO;
@@ -19,17 +25,18 @@ public class SharableImage implements Serializable{
     private byte[] imageAsBytes;
     
     public SharableImage(File file, String title, String author) {
-        this.title = title;
-        this.author = author;
-        try {
-            FileInputStream fileInputStream = new FileInputStream(file);
-            imageAsBytes = IOUtils.toByteArray(fileInputStream);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+    	this.title = title;
+    	this.author = author;
+    	if (file != null) {
+    		try {
+    			FileInputStream fileInputStream = new FileInputStream(file);
+    			imageAsBytes = IOUtils.toByteArray(fileInputStream);
+    		} catch (FileNotFoundException e) {
+    			e.printStackTrace();
+    		} catch (IOException e) {
+    			e.printStackTrace();
+    		}
+    	}
     }
 
     public String getTitle() {
@@ -67,5 +74,15 @@ public class SharableImage implements Serializable{
                 "title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 '}';
+    }
+    
+    @Override
+    public boolean equals(Object other) {
+    	if (other instanceof SharableImage || other instanceof Optional<?>) {
+    		return (this.author.equals(((SharableImage) other).getAuthor()) 
+    				&& this.title.equals(((SharableImage) other).getTitle()) 
+    				&& Arrays.equals(imageAsBytes, ((SharableImage) other).getByteArray()));
+    	}
+    	return false;
     }
 }
