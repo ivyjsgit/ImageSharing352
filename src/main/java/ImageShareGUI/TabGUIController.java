@@ -143,7 +143,7 @@ public class TabGUIController {
 
 		BufferedImage buffImage = SwingFXUtils.fromFXImage(downImage, null);
 		try {
-			ImageIO.write(buffImage, ".png", savedImage);
+			ImageIO.write(buffImage, "png", savedImage);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
