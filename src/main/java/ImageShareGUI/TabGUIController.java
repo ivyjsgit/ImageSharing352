@@ -134,7 +134,10 @@ public class TabGUIController {
 	}
 
 	public void saveImage(Image downImage) {
-		File savedImage = new File(defaultDir);
+		FileChooser fileSaver = new FileChooser();
+		fileSaver.setTitle("Save Image");
+		fileSaver.setInitialDirectory(directory);
+		File savedImage = fileSaver.showSaveDialog(null);
 		BufferedImage buffImage = SwingFXUtils.fromFXImage(downImage, null);
 		try {
 			ImageIO.write(buffImage, "png", savedImage);
@@ -145,7 +148,7 @@ public class TabGUIController {
 
 	public void uploadImage() {
 		fileChooser.setTitle("Select Image");
-		File chosenFile = fileChooser.showOpenDialog(new Stage());
+		File chosenFile = fileChooser.showSaveDialog(null);
 
 		new Thread(() -> {
 
