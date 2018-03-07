@@ -112,6 +112,8 @@ public class TabGUIController {
 		ScrollPane imageScroll = new ScrollPane();
 		TilePane imageTiles = new TilePane();
 		imageTiles.setPadding(new Insets(15, 15, 15, 15));
+		imageTiles.setHgap(15);
+		imageTiles.setVgap(15);
 
 		for (SharableImage x : receivedImages) {
 			Image image = SwingFXUtils.toFXImage(x.getImage().get(), null);
