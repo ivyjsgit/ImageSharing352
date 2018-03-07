@@ -60,6 +60,7 @@ public class TabGUIController {
 	FileChooser fileChooser = new FileChooser();
 	User shareUser = new User("", "");
 	File directory = new File("Directory.txt");
+	File chosenDirectory;
 	String defaultDir;
 
 	ArrayList<SharableImage> receivedImages = new ArrayList<SharableImage>();
@@ -71,6 +72,7 @@ public class TabGUIController {
 			DirectoryChooser dirChoose = new DirectoryChooser();
 			dirChoose.setTitle("Choose initial directory");
 			File chosenDir = dirChoose.showDialog(new Stage());
+			chosenDirectory = chosenDir;
 			defaultDir = chosenDir.getAbsolutePath();
 			saveDirectory(defaultDir, directory);
 		} else {
@@ -92,7 +94,7 @@ public class TabGUIController {
 			}
 
 		});
-
+		System.out.println(directory);
 	}
 
 	/*
@@ -136,7 +138,7 @@ public class TabGUIController {
 	public void saveImage(Image downImage) {
 		FileChooser fileSaver = new FileChooser();
 		fileSaver.setTitle("Save Image");
-		fileSaver.setInitialDirectory(directory);
+		fileSaver.setInitialDirectory(chosenDirectory);
 		File savedImage = fileSaver.showSaveDialog(null);
 
 		BufferedImage buffImage = SwingFXUtils.fromFXImage(downImage, null);
