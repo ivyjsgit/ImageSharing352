@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.Arrays;
 import java.util.Base64;
 import java.util.Optional;
 
@@ -66,5 +67,15 @@ public class SharableImage implements Serializable{
                 "title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 '}';
+    }
+    
+    @Override
+    public boolean equals(Object other) {
+    	if (other instanceof SharableImage || other instanceof Optional<?>) {
+    		return (this.author.equals(((SharableImage) other).getAuthor()) 
+    				&& this.title.equals(((SharableImage) other).getTitle()) 
+    				&& Arrays.equals(imageAsBytes, ((SharableImage) other).getByteArray()));
+    	}
+    	return false;
     }
 }
