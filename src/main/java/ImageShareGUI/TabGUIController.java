@@ -3,11 +3,14 @@ package ImageShareGUI;
 import static Storage.DefaultDirectory.readDefaultDirectory;
 import static Storage.DefaultDirectory.saveDirectory;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 
 import Networking.RequestAllImages;
 import ReusableClasses.Images.SharableImage;
@@ -15,6 +18,7 @@ import ReusableClasses.Users.User;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -50,9 +54,6 @@ public class TabGUIController {
 	Button request;
 
 	@FXML
-	ImageView imageDown;
-
-	@FXML
 	TilePane tiles;
 
 	FileChooser fileChooser = new FileChooser();
@@ -60,6 +61,7 @@ public class TabGUIController {
 	File directory = new File("Directory.txt");
 	String defaultDir;
 
+	ArrayList<SharableImage> imagePile = new ArrayList<SharableImage>();
 	ArrayList<SharableImage> receivedImages = new ArrayList<SharableImage>();
 
 	public void initialize() {
@@ -93,18 +95,30 @@ public class TabGUIController {
 
 	}
 
+	/*
+	 * https://stackoverflow.com/questions/27182323/working-on-creating-image-
+	 * gallery-in-javafx-not-able-to-display-image-properly
+	 *
+	 * Used as reference for some TilePane code
+	 *
+	 *
+	 */
+
 	private void addTab(String name) {
 		Tab tab = new Tab(name);
 		VBox scrollBox = new VBox();
 		scrollBox.setFillWidth(false);
 		ScrollPane imageScroll = new ScrollPane();
 		TilePane imageTiles = new TilePane();
+		imageTiles.setPadding(new Insets(15, 15, 15, 15));
 
 		for (SharableImage x : receivedImages) {
 			Image image = SwingFXUtils.toFXImage(x.getImage().get(), null);
 			ImageView tileImage = new ImageView(image);
 			tileImage.setOnMouseClicked((MouseEvent e) -> {
-				System.out.println("clicked");
+				Image clickedImage = tileImage.getImage();
+				saveImage(clickedImage);
+
 			});
 			tileImage.setFitHeight(300);
 			tileImage.setFitWidth(300);
@@ -119,9 +133,14 @@ public class TabGUIController {
 		tabHolder.getTabs().add(tab);
 	}
 
-	public void handle(MouseEvent event) {
-		Node n = (Node) event.getSource();
-
+	public void saveImage(Image downImage) {
+		File savedImage = new File(defaultDir);
+		BufferedImage buffImage = SwingFXUtils.fromFXImage(downImage, null);
+		try {
+			ImageIO.write(buffImage, "png", savedImage);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void uploadImage() {
@@ -146,7 +165,6 @@ public class TabGUIController {
 			try {
 				RequestAllImages.receiveAllImages(shareUser.getFiles());
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			;
@@ -160,6 +178,7 @@ public class TabGUIController {
 			try {
 				System.out.println(otherIP.getText());
 				receivedImages.addAll(RequestAllImages.requestAllImages(otherIP.getText()));
+				imagePile.addAll(receivedImages);
 				addTab(otherIP.getText());
 
 			} catch (IOException e) {
