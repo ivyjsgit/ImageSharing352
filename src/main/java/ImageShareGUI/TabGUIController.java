@@ -15,6 +15,7 @@ import ReusableClasses.Users.User;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
@@ -22,6 +23,8 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.ScrollPane;
@@ -100,6 +103,12 @@ public class TabGUIController {
 		for (SharableImage x : receivedImages) {
 			Image image = SwingFXUtils.toFXImage(x.getImage().get(), null);
 			ImageView tileImage = new ImageView(image);
+			tileImage.setOnMouseClicked((MouseEvent e) -> {
+				System.out.println("clicked");
+			});
+			tileImage.setFitHeight(300);
+			tileImage.setFitWidth(300);
+
 			imageTiles.getChildren().add(tileImage);
 		}
 
@@ -108,6 +117,11 @@ public class TabGUIController {
 		tab.setContent(imageScroll);
 
 		tabHolder.getTabs().add(tab);
+	}
+
+	public void handle(MouseEvent event) {
+		Node n = (Node) event.getSource();
+
 	}
 
 	public void uploadImage() {

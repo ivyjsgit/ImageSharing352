@@ -1,18 +1,15 @@
 package ReusableClasses.Images;
 
 import java.awt.image.BufferedImage;
-<<<<<<< HEAD
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
-=======
 import java.io.*;
 import java.util.Arrays;
 import java.util.Base64;
->>>>>>> 8cd32f311386b4fc7c7ffdac505f2afabcb2f95e
 import java.util.Optional;
 
 import javax.imageio.ImageIO;
@@ -23,7 +20,7 @@ public class SharableImage implements Serializable{
     private String title;
     private String author;
     private byte[] imageAsBytes;
-    
+
     public SharableImage(File file, String title, String author) {
     	this.title = title;
     	this.author = author;
@@ -42,7 +39,7 @@ public class SharableImage implements Serializable{
     public String getTitle() {
         return title;
     }
-    
+
     public void setTitle(String title) {
     	this.title = title;
     }
@@ -54,7 +51,7 @@ public class SharableImage implements Serializable{
     public void setAuthor(String author) {
         this.author = author;
     }
-    
+
     public byte[] getByteArray() {
     	return imageAsBytes;
     }
@@ -75,12 +72,12 @@ public class SharableImage implements Serializable{
                 ", author='" + author + '\'' +
                 '}';
     }
-    
+
     @Override
     public boolean equals(Object other) {
     	if (other instanceof SharableImage || other instanceof Optional<?>) {
-    		return (this.author.equals(((SharableImage) other).getAuthor()) 
-    				&& this.title.equals(((SharableImage) other).getTitle()) 
+    		return (this.author.equals(((SharableImage) other).getAuthor())
+    				&& this.title.equals(((SharableImage) other).getTitle())
     				&& Arrays.equals(imageAsBytes, ((SharableImage) other).getByteArray()));
     	}
     	return false;
