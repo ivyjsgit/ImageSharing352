@@ -17,17 +17,18 @@ public class SharableImage implements Serializable{
     private byte[] imageAsBytes;
     
     public SharableImage(File file, String title, String author) {
-        this.title = title;
-        this.author = author;
-        try {
-            FileInputStream fileInputStream = new FileInputStream(file);
-            imageAsBytes = IOUtils.toByteArray(fileInputStream);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+    	this.title = title;
+    	this.author = author;
+    	if (file != null) {
+    		try {
+    			FileInputStream fileInputStream = new FileInputStream(file);
+    			imageAsBytes = IOUtils.toByteArray(fileInputStream);
+    		} catch (FileNotFoundException e) {
+    			e.printStackTrace();
+    		} catch (IOException e) {
+    			e.printStackTrace();
+    		}
+    	}
     }
 
     public String getTitle() {
