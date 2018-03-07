@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.TabPane?>
+
+<TabPane fx:id="tabHolder" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ImageShareGUI.TabGUIController">
+   <tabs>
+      <Tab closable="false" text="Connect">
+         <content>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <center>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label fx:id="ipViewer" text="Your IP is: " />
+                        <Button fx:id="upload" mnemonicParsing="false" onAction="#uploadImage" text="Upload Image" />
+                        <TextField fx:id="otherIP" alignment="CENTER" promptText="Other User IP" />
+                        <Button fx:id="request" mnemonicParsing="false" onAction="#requestImage" text="Request Images" />
+                     </children>
+                  </VBox>
+               </center>
+            </BorderPane>
+         </content>
+      </Tab>
+      <Tab closable="false" text="My Images">
+         <content>
+            <VBox>
+               <children>
+                  <ScrollPane>
+                     <content>
+                        <TilePane fx:id="tiles" hgap="15.0" vgap="15.0">
+                           <padding>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </padding>
+                        </TilePane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+         </content>
+      </Tab>
+   </tabs>
+</TabPane>

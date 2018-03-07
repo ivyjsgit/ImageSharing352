@@ -1,15 +1,17 @@
 package ReusableClasses.Images;
 
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.SerializationUtils;
-
-import javafx.scene.image.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.Optional;
 
 import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.*;
-import java.util.Base64;
-import java.util.Optional;
+
+import org.apache.commons.io.IOUtils;
 
 public class SharableImage implements Serializable{
     private String title;
