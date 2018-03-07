@@ -23,8 +23,8 @@ public class BasicSharingTest {
                 Assert.assertTrue(recievedImage.getTitle().equals("Test"));
                 Assert.assertTrue(recievedImage.getAuthor().equals("test"));
 
-            }catch(Exception e){
-
+            } catch(Exception e) {
+            	e.printStackTrace();
             }
         }).start();
     }
