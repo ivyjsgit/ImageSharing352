@@ -26,9 +26,12 @@ public class BasicSharingTest {
 
         new Thread(() -> {
             try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                SharableImage recievedImage = Networking.BasicSharing.receiveImage("127.0.0.1");
+                Assert.assertTrue(recievedImage.getTitle().equals("Test"));
+                Assert.assertTrue(recievedImage.getAuthor().equals("test"));
+
+            } catch(Exception e) {
+            	e.printStackTrace();
             }
             try {
                 BasicSharing.sendImage(new SharableImage(null, "Test", "Test"));
