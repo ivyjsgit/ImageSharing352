@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 
@@ -61,7 +62,6 @@ public class TabGUIController {
 	File directory = new File("Directory.txt");
 	String defaultDir;
 
-	ArrayList<SharableImage> imagePile = new ArrayList<SharableImage>();
 	ArrayList<SharableImage> receivedImages = new ArrayList<SharableImage>();
 
 	public void initialize() {
@@ -138,9 +138,10 @@ public class TabGUIController {
 		fileSaver.setTitle("Save Image");
 		fileSaver.setInitialDirectory(directory);
 		File savedImage = fileSaver.showSaveDialog(null);
+
 		BufferedImage buffImage = SwingFXUtils.fromFXImage(downImage, null);
 		try {
-			ImageIO.write(buffImage, "png", savedImage);
+			ImageIO.write(buffImage, ".png", savedImage);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -148,7 +149,7 @@ public class TabGUIController {
 
 	public void uploadImage() {
 		fileChooser.setTitle("Select Image");
-		File chosenFile = fileChooser.showSaveDialog(null);
+		File chosenFile = fileChooser.showOpenDialog(new Stage());
 
 		new Thread(() -> {
 
@@ -181,7 +182,6 @@ public class TabGUIController {
 			try {
 				System.out.println(otherIP.getText());
 				receivedImages.addAll(RequestAllImages.requestAllImages(otherIP.getText()));
-				imagePile.addAll(receivedImages);
 				addTab(otherIP.getText());
 
 			} catch (IOException e) {
