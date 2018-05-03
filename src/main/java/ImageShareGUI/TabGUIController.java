@@ -119,10 +119,10 @@ public class TabGUIController {
 		fileSaver.setTitle("Save Image");
 		File savedImage = fileSaver.showSaveDialog(null);
 		fileSaver.setInitialDirectory(chosenDirectory);
+		
 		// https://stackoverflow.com/questions/10471396/appending-the-file-type-to-a-file-in-java-using-jfilechooser
-
 		String filePath = savedImage.getAbsolutePath();
-		if (!filePath.endsWith(".png")) {
+		if (filePath != null && !filePath.endsWith(".png")) {
 			savedImage = new File(filePath + ".png");
 		}
 
@@ -137,41 +137,37 @@ public class TabGUIController {
 	public void uploadImage() {
 		fileChooser.setTitle("Select Image");
 		File chosenFile = fileChooser.showOpenDialog(new Stage());
+		if (chosenFile != null) {
+			new Thread(() -> {
 
-		new Thread(() -> {
+				SharableImage chosenImage = new SharableImage(chosenFile, chosenFile.getName(), "test");
+				shareUser.addSharbleImage(chosenImage);
 
-			SharableImage chosenImage = new SharableImage(chosenFile, chosenFile.getName(), "test");
-			shareUser.addSharbleImage(chosenImage);
-			System.out.println("Crashing?");
+				Image image = SwingFXUtils.toFXImage(chosenImage.getImage().get(), null);
+				Platform.runLater(() -> {
+					ImageView upImage = new ImageView(image);
+					upImage.setFitHeight(300);
+					upImage.setFitWidth(300);
+					tiles.getChildren().add(upImage);
 
-			Image image = SwingFXUtils.toFXImage(chosenImage.getImage().get(), null);
-			Platform.runLater(() -> {
-				ImageView upImage = new ImageView(image);
-				upImage.setFitHeight(300);
-				upImage.setFitWidth(300);
-				tiles.getChildren().add(upImage);
+				});
 
-			});
-
-			try {
-				RequestAllImages.receiveAllImages(shareUser.getFiles());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			;
-		}, "uploadingThread").start();
-
+				try {
+					RequestAllImages.receiveAllImages(shareUser.getFiles());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				;
+			}, "uploadingThread").start();
+		}
 	}
 
 	public void requestImage() throws IOException {
 		Platform.runLater(() -> {
-			System.out.println("Getting image!");
 			try {
-				System.out.println(otherIP.getText());
 				receivedImages.clear();
 				receivedImages.addAll(RequestAllImages.requestAllImages(otherIP.getText()));
 				addTab(otherIP.getText());
-
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
