@@ -10,32 +10,28 @@ import java.util.Optional;
 import Images.SharableImage;
 
 public class RequestedImageSharing {
+	static final int portNumber = 1999;
+	
     public static Optional<SharableImage> sendImageRequest(String ip, String imageName) throws IOException {
         preventRaceCondition();
-        ClientSocket socket = new ClientSocket(ip,1999);
+        ClientSocket socket = new ClientSocket(ip, portNumber);
         socket.sendMessage(imageName);
 
         boolean asBoolean = Boolean.valueOf(socket.recieveMessage());
         if (asBoolean) {
-            System.out.println("Have image!");
             return Optional.of(getSelectedImage(ip));
         } else {
-            System.out.println("No image :(");
             return Optional.empty();
-
         }
     }
 
     public static void receiveImageRequest(ArrayList<SharableImage> files) throws IOException {
-        SimpleServerSocket serverSocket = new SimpleServerSocket(1999);
-
-        System.out.println("Getting stuff!");
+        SimpleServerSocket serverSocket = new SimpleServerSocket(portNumber);
         while (!serverSocket.ready()) {
+        	
         }
-        System.out.println("Stuff gotten");
         String requestedImage = serverSocket.recieveMessage();
         if (doesContainImage(requestedImage, files)) {
-            System.out.println("Have image!");
             serverSocket.sendMessage("true");
         } else {
            serverSocket.sendMessage("false");

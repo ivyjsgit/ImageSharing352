@@ -15,6 +15,7 @@ public class SimpleServerSocket extends ClientSocket{
         this.outputWriter = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
         this.inputReader = getBufferedReader(socket.getInputStream());
     }
+    
     public boolean ready() throws IOException {
         return inputReader.ready();
     }

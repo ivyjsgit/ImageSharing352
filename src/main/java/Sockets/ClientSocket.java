@@ -24,9 +24,11 @@ public class ClientSocket {
         outputWriter.write(message+"\n");
         outputWriter.flush();
     }
+    
     public String recieveMessage() throws IOException {
         return inputReader.readLine();
     }
+    
     @Override
     public String toString() {
         return "ClientSocket{" +
@@ -35,14 +37,11 @@ public class ClientSocket {
                 ", outputWriter=" + outputWriter +
                 '}';
     }
+    
     public ClientSocket(Socket socket) throws IOException {
         this.socket=socket;
         this.socket.setSoTimeout(10000);
         this.outputWriter = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
         this.inputReader = getBufferedReader(socket.getInputStream());
     }
-    public ClientSocket(){
-
-    }
-
 }

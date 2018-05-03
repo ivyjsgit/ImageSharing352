@@ -14,9 +14,11 @@ import java.util.Base64;
 import static Networking.RequestedImageSharing.preventRaceCondition;
 
 public class RequestAllImages {
+	static final int portNumber = 1339;
+	
     public static ArrayList<SharableImage> requestAllImages(String ip) throws IOException {
         preventRaceCondition();
-        ClientSocket socket = new ClientSocket(ip,1339);
+        ClientSocket socket = new ClientSocket(ip, portNumber);
         socket.sendMessage("GET");
         String arrayListAsString = socket.recieveMessage();
 
@@ -27,7 +29,7 @@ public class RequestAllImages {
     }
 
     public static void receiveAllImages(ArrayList<SharableImage> images) throws IOException {
-        SimpleServerSocket simpleServerSocket = new SimpleServerSocket(1339);
+        SimpleServerSocket simpleServerSocket = new SimpleServerSocket(portNumber);
         String receivedCommand = simpleServerSocket.recieveMessage();
         if (receivedCommand.equals("GET")) {
             BasicSharing.encodeAndSend(images,simpleServerSocket);

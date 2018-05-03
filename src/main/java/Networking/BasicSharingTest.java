@@ -20,7 +20,8 @@ public class BasicSharingTest {
                 Assert.assertTrue(image.getAuthor().equals("Test"));
             } catch (IOException e) {
                 e.printStackTrace();
-            } catch (AssertionError e) { //JUnit cannot give us an error for another thread. We must have some external indicator that can be placed inside a lambda.
+            } catch (AssertionError e) {
+            	//JUnit cannot give us an error for another thread. We must have some external indicator that can be placed inside a lambda.
                 stringAtomicReference.set("Error!");
             }
 

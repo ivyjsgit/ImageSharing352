@@ -11,10 +11,11 @@ import java.io.*;
 import java.util.Base64;
 
 public class BasicSharing {
+	static final int portNumber = 1337;
 
     public static void sendImage(SharableImage sharableImage) throws IOException {
         try {
-            SimpleServerSocket simpleServerSocket = new SimpleServerSocket(1337);
+            SimpleServerSocket simpleServerSocket = new SimpleServerSocket(portNumber);
             encodeAndSend(sharableImage,simpleServerSocket);
         } catch (IOException e) {
             throw new IOException("Server could not connect to client");
@@ -24,7 +25,7 @@ public class BasicSharing {
 
     public static SharableImage receiveImage(String ip) throws IOException {
         RequestedImageSharing.preventRaceCondition();
-        ClientSocket clientSocket = new ClientSocket(ip,1337);
+        ClientSocket clientSocket = new ClientSocket(ip, portNumber);
         String receivedString = clientSocket.recieveMessage();
 
         byte[] decodedBase64 = Base64.getDecoder().decode(receivedString);
@@ -32,6 +33,7 @@ public class BasicSharing {
 
         return gotImage;
     }
+    
     protected static void encodeAndSend(Serializable data, SimpleServerSocket simpleServerSocket){
         String imageAsBytes = Base64.getEncoder().encodeToString(SerializationUtils.serialize(data));
         simpleServerSocket.sendMessage(imageAsBytes);

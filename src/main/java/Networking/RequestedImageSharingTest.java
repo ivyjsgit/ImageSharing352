@@ -27,7 +27,8 @@ public class RequestedImageSharingTest {
                 Assert.assertTrue(images.get(0).equals(received));
             } catch (IOException e) {
                 e.printStackTrace();
-            } catch (AssertionError e) { //JUnit cannot give us an error for another thread. We must have some external indicator that can be placed inside a lambda.
+            } catch (AssertionError e) {
+            	//JUnit cannot give us an error for another thread. We must have some external indicator that can be placed inside a lambda.
                 stringAtomicReference.set("Error!");
             }
 
