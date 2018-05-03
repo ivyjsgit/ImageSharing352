@@ -7,16 +7,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
-import java.io.*;
 import java.util.Arrays;
-import java.util.Base64;
 import java.util.Optional;
-
 import javax.imageio.ImageIO;
-
 import org.apache.commons.io.IOUtils;
 
-public class SharableImage implements Serializable{
+public class SharableImage implements Serializable {
     private String title;
     private String author;
     private byte[] imageAsBytes;
