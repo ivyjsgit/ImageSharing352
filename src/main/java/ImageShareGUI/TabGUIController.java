@@ -1,17 +1,12 @@
 package ImageShareGUI;
 
-import static Storage.DefaultDirectory.readDefaultDirectory;
-import static Storage.DefaultDirectory.saveDirectory;
-
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
-
 import javax.imageio.ImageIO;
-
 import Networking.RequestAllImages;
 import ReusableClasses.Images.SharableImage;
 import ReusableClasses.Users.User;
@@ -30,7 +25,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.ScrollPane;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
