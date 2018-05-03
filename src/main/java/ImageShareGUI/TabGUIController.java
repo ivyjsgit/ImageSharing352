@@ -89,17 +89,7 @@ public class TabGUIController {
 		imageTiles.setVgap(15);
 
 		for (SharableImage x : receivedImages) {
-			Image image = SwingFXUtils.toFXImage(x.getImage().get(), null);
-			ImageView tileImage = new ImageView(image);
-			tileImage.setOnMouseClicked((MouseEvent e) -> {
-				Image clickedImage = tileImage.getImage();
-				saveImage(clickedImage);
-
-			});
-			tileImage.setFitHeight(300);
-			tileImage.setFitWidth(300);
-
-			imageTiles.getChildren().add(tileImage);
+			addImagetoTab(x, imageTiles);
 		}
 
 		imageScroll.setContent(imageTiles);
@@ -107,6 +97,20 @@ public class TabGUIController {
 		tab.setContent(imageScroll);
 
 		tabHolder.getTabs().add(tab);
+	}
+	
+	private void addImagetoTab(SharableImage x, TilePane imageTiles) {
+		Image image = SwingFXUtils.toFXImage(x.getImage().get(), null);
+		ImageView tileImage = new ImageView(image);
+		tileImage.setOnMouseClicked((MouseEvent e) -> {
+			Image clickedImage = tileImage.getImage();
+			saveImage(clickedImage);
+
+		});
+		tileImage.setFitHeight(300);
+		tileImage.setFitWidth(300);
+
+		imageTiles.getChildren().add(tileImage);
 	}
 
 	public void saveImage(Image downImage) {
@@ -134,26 +138,28 @@ public class TabGUIController {
 		File chosenFile = fileChooser.showOpenDialog(new Stage());
 		if (chosenFile != null) {
 			new Thread(() -> {
-
-				SharableImage chosenImage = new SharableImage(chosenFile, chosenFile.getName(), "test");
-				shareUser.addSharbleImage(chosenImage);
-
-				Image image = SwingFXUtils.toFXImage(chosenImage.getImage().get(), null);
-				Platform.runLater(() -> {
-					ImageView upImage = new ImageView(image);
-					upImage.setFitHeight(300);
-					upImage.setFitWidth(300);
-					tiles.getChildren().add(upImage);
-
-				});
-
-				try {
-					RequestAllImages.receiveAllImages(shareUser.getFiles());
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				;
+				uploadImageHelper(chosenFile);
 			}, "uploadingThread").start();
+		}
+	}
+	
+	private void uploadImageHelper(File chosenFile) {
+		SharableImage chosenImage = new SharableImage(chosenFile, chosenFile.getName(), "test");
+		shareUser.addSharbleImage(chosenImage);
+
+		Image image = SwingFXUtils.toFXImage(chosenImage.getImage().get(), null);
+		Platform.runLater(() -> {
+			ImageView upImage = new ImageView(image);
+			upImage.setFitHeight(300);
+			upImage.setFitWidth(300);
+			tiles.getChildren().add(upImage);
+
+		});
+
+		try {
+			RequestAllImages.receiveAllImages(shareUser.getFiles());
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
