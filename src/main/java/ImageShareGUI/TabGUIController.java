@@ -56,34 +56,16 @@ public class TabGUIController {
 
 	FileChooser fileChooser = new FileChooser();
 	User shareUser = new User("", "");
-	File directory = new File("Directory.txt");
 	File chosenDirectory;
-	String defaultDir;
-
+	
 	ArrayList<SharableImage> receivedImages = new ArrayList<SharableImage>();
 
 	public void initialize() {
 		fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("*.jpg", "*.jpg"),
 				new FileChooser.ExtensionFilter("*.jpg", "*.jpeg"), new FileChooser.ExtensionFilter("*.png", "*.png"));
-		if (!directory.exists()) {
-			DirectoryChooser dirChoose = new DirectoryChooser();
-			dirChoose.setTitle("Choose initial directory");
-			File chosenDir = dirChoose.showDialog(new Stage());
-			chosenDirectory = chosenDir;
-			defaultDir = chosenDir.getAbsolutePath();
-			saveDirectory(defaultDir, directory);
-		} else {
-			/*
-			 * Found at
-			 * http://javarevisited.blogspot.com/2015/09/how-to-read-file-into-
-			 * string-in-java-7.html#ixzz58o7FRLqr
-			 */
-			readDefaultDirectory(directory, defaultDir);
-		}
 		Platform.runLater(() -> {
 			try {
 				String ip = InetAddress.getLocalHost().getHostAddress();
-				System.out.println(ip);
 				shareUser.setIP(ip);
 				ipViewer.setText("Your IP is: " + ip);
 			} catch (UnknownHostException e) {
@@ -91,7 +73,6 @@ public class TabGUIController {
 			}
 
 		});
-		System.out.println(directory);
 	}
 
 	/*
@@ -137,7 +118,7 @@ public class TabGUIController {
 		FileChooser fileSaver = new FileChooser();
 		fileSaver.setTitle("Save Image");
 		File savedImage = fileSaver.showSaveDialog(null);
-
+		fileSaver.setInitialDirectory(chosenDirectory);
 		// https://stackoverflow.com/questions/10471396/appending-the-file-type-to-a-file-in-java-using-jfilechooser
 
 		String filePath = savedImage.getAbsolutePath();
