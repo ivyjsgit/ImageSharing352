@@ -1,4 +1,4 @@
-package ReusableClasses.Networking;
+package Sockets;
 
 import java.io.BufferedReader;
 import java.io.IOException;

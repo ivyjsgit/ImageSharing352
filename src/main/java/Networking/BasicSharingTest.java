@@ -1,8 +1,9 @@
 package Networking;
 
-import ReusableClasses.Images.SharableImage;
 import org.junit.Assert;
 import org.junit.Test;
+
+import Images.SharableImage;
 
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicReference;

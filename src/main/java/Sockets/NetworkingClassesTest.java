@@ -1,4 +1,4 @@
-package ReusableClasses.Networking;
+package Sockets;
 
 import org.junit.Assert;
 import org.junit.Test;

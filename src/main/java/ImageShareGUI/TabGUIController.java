@@ -7,9 +7,10 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
+
+import Images.SharableImage;
 import Networking.RequestAllImages;
-import ReusableClasses.Images.SharableImage;
-import ReusableClasses.Users.User;
+import Users.User;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;

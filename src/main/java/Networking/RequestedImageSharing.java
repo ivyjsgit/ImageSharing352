@@ -1,12 +1,13 @@
 package Networking;
 
-import ReusableClasses.Networking.ClientSocket;
-import ReusableClasses.Images.SharableImage;
-import ReusableClasses.Networking.SimpleServerSocket;
+import Sockets.ClientSocket;
+import Sockets.SimpleServerSocket;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Optional;
+
+import Images.SharableImage;
 
 public class RequestedImageSharing {
     public static Optional<SharableImage> sendImageRequest(String ip, String imageName) throws IOException {

@@ -1,9 +1,11 @@
 package Networking;
 
-import ReusableClasses.Networking.ClientSocket;
-import ReusableClasses.Images.SharableImage;
-import ReusableClasses.Networking.SimpleServerSocket;
+import Sockets.ClientSocket;
+import Sockets.SimpleServerSocket;
+
 import org.apache.commons.lang3.SerializationUtils;
+
+import Images.SharableImage;
 
 import java.io.*;
 import java.util.Base64;

@@ -1,4 +1,4 @@
-package ReusableClasses.Images;
+package Images;
 
 import static org.junit.Assert.*;
 

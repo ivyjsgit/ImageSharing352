@@ -1,4 +1,4 @@
-package ReusableClasses.Users;
+package Users;
 
 import static org.junit.Assert.*;
 

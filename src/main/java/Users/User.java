@@ -1,9 +1,9 @@
-package ReusableClasses.Users;
-
-import ReusableClasses.Images.SharableImage;
+package Users;
 
 import java.io.File;
 import java.util.ArrayList;
+
+import Images.SharableImage;
 
 public class User {
 	private ArrayList<SharableImage> files;

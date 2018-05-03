@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicReference;
 import org.junit.Assert;
 import org.junit.Test;
-import ReusableClasses.Images.SharableImage;
+
+import Images.SharableImage;
 
 public class RequestAllImagesTest {
 	

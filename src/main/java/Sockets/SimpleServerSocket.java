@@ -1,4 +1,4 @@
-package ReusableClasses.Networking;
+package Sockets;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
