@@ -124,12 +124,13 @@ public class TabGUIController {
 		if (filePath != null && !filePath.endsWith(".png")) {
 			savedImage = new File(filePath + ".png");
 		}
-
-		BufferedImage buffImage = SwingFXUtils.fromFXImage(downImage, null);
-		try {
-			ImageIO.write(buffImage, "png", savedImage);
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (savedImage != null) {
+			BufferedImage buffImage = SwingFXUtils.fromFXImage(downImage, null);
+			try {
+				ImageIO.write(buffImage, "png", savedImage);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
